@@ -11,6 +11,19 @@ class Blockchain(object):
 
         self.new_block(previous_hash=1, proof=100)
 
+    def proof_of_work(self, last_proof):
+        """
+        This is a simple PoW algorithm similar to Bitcoin's HashCash algo.
+        - Find a number p' such that hash(pp') contains leading 4 zeroes,
+        where p is the previous p'.
+        - p is the previous proof, and p' is the new proof
+        """
+
+        proof = 0
+        while self.valid_proof(last_proof, proof) is False:
+            proof += 1
+        return proof
+
     def new_block(self, proof, previous_hash=None):
         """
         Creates a new block in the blockchain.
@@ -58,6 +71,19 @@ class Blockchain(object):
 
         block_string = json.dumps(block, sort_keys=True).encode()
         return hashlib.sha256(block_string).hexdigest()
+
+    @staticmethod
+    def valid_proof(last_proof, proof):
+        """
+        Validates the Proof: Does hash(last_proof, proof) contain 4 leading zeroes?
+
+        :param last_proof: <int> Previous Proof
+        :param proof: <int> Current Proof
+        :return: <bool> True if correct, False if not
+        """
+        guess = "{}{}".format(last_proof, proof).encode()
+        guess_hash = hashlib.sha256(guess).hexdigest()
+        return guess_hash[:4] == "0000"
 
     @property
     def last_block(self):
