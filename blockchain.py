@@ -99,7 +99,7 @@ class Blockchain(object):
 app = Flask(__name__)
 
 # Generate a globally unique address for this node
-node_identifier = str(uuid4().replace('-', ''))
+node_identifier = str(uuid4()).replace('-', '')
 
 blockchain = Blockchain()
 
@@ -143,7 +143,7 @@ def new_transaction():
 
     # Create new transaction
     index = blockchain.new_transaction(values['sender'], values['recipient'], values['amount'])
-    respone = {
+    response = {
         'message': 'Transaction will be added to Block {}'.format(index)
     }
     return jsonify(response), 201
