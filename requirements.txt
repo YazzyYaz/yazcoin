@@ -36,7 +36,7 @@ ipaddress==1.0.18
 ipython==5.5.0
 ipython-genutils==0.2.0
 itsdangerous==0.24
-Jinja2==2.9.6
+Jinja2==2.11.3
 Keras==2.0.8
 kombu==4.1.0
 Mako==1.0.7
