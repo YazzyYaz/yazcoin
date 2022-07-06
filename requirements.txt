@@ -29,7 +29,7 @@ funcsigs==1.0.2
 functools32==3.2.3.post2
 gdax==1.0.6
 gym==0.9.3
-html5lib==0.9999999
+html5lib==0.999999999
 idna==2.6
 inflection==0.3.1
 ipaddress==1.0.18
